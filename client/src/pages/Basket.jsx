@@ -3,13 +3,59 @@ import BasketCard from "../components/BasketCard";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
 import { useUpdateBaskets } from "../hooks/useUpdateBaskets";
+import { useNavigate } from "react-router-dom";
+import { SHOP_ROUTE } from "../utils/const";
 
 const Basket = observer(() => {
+  const navigate = useNavigate();
   const { baskets } = useContext(Context);
   useUpdateBaskets();
   const [promocod, setPromocod] = useState("");
   if (baskets.lengthBasket <= 0) {
-    return <div>Корзина пуста...</div>;
+    return (
+      <div
+        style={{
+          background: "#ddd",
+          minHeight: "100vh",
+          display: "flex",
+          fontFamily: "sans-serif",
+          fontSize: "0.8rem",
+          fontWeight: "bold",
+        }}
+      >
+        <div
+          style={{
+            margin: "auto",
+            maxWidth: "950px",
+            width: "90%",
+            boxShadow: "0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+            borderRadius: "1rem",
+            border: "transparent",
+            backgroundColor: "#fff",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "4vh 5vh",
+          }}
+        >
+          <h2 style={{ marginBottom: "2vh" }}>Ваша корзина одинока(</h2>
+          <button
+            onClick={() => navigate(SHOP_ROUTE)}
+            style={{
+              backgroundColor: "#000",
+              borderColor: "#000",
+              color: "white",
+              padding: "1vh 2vh",
+              borderRadius: "0.5rem",
+              cursor: "pointer",
+            }}
+          >
+            Найти компанию
+          </button>
+        </div>
+      </div>
+    );
   }
 
   const calcSumm = () => {

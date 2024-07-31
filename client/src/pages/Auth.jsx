@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Container, Form, Row } from "react-bootstrap";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/const";

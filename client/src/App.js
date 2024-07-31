@@ -12,7 +12,6 @@ import { mergeObjectsByDeviceId } from "./hooks/mergeObjectsByDeviceId";
 const App = observer(() => {
   const { user, baskets } = useContext(Context);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     async function fetchData() {
       check()
