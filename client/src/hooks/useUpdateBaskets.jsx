@@ -8,13 +8,11 @@ export const useUpdateBaskets = () => {
 
   const updateBaskets = useCallback(async () => {
     try {
-      // Получаем данные корзины для текущего пользователя
       const basketData = await getBasketByUserId(
         localStorage.getItem("userId")
       );
 
       if (basketData && basketData.basket_devices) {
-        // Обновляем состояние корзины
         baskets.setBasket(mergeObjectsByDeviceId(basketData.basket_devices));
         baskets.setLengthBasket(basketData.basket_devices.length);
       } else {

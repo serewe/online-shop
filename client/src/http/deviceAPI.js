@@ -15,8 +15,15 @@ export const createBrand = async (brand) => {
   return data;
 };
 
-export const fetchBrands = async () => {
-  const { data } = await $host.get("api/brand");
+export const fetchBrands = async (typeId, brandId, page, limit = 5) => {
+  const { data } = await $host.get("api/brand", {
+    params: {
+      typeId,
+      brandId,
+      page,
+      limit,
+    },
+  });
   return data;
 };
 
@@ -37,7 +44,16 @@ export const fetchDevices = async (typeId, brandId, page, limit = 5) => {
   return data;
 };
 
-export const fetchOneDevice = async (id) => {
-  const { data } = await $host.get("api/device/" + id);
-  return data;
+export const fetchOneDevice = async (id, userid) => {
+  try {
+    const { data } = await $host.get(`/api/device/${id}`, {
+      params: {
+        userId: userid,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("Error fetching device:", error);
+    throw error;
+  }
 };
